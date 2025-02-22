@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvCinema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CINEMA"
+        android:textColor="#FFFF0000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tvMovieLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Movie"
+        android:textStyle="bold"
+        android:layout_below="@id/tvCinema"
+        android:layout_marginTop="16dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerMovies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tvMovieLabel"
+        android:layout_toEndOf="@id/tvMovieLabel"
+        android:layout_marginStart="16dp"
+        android:entries="@array/movies_array" />
+
+    <ImageView
+        android:id="@+id/imageViewMovie"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/tvMovieLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/picture1" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupTicketType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewMovie"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <RadioButton
+            android:id="@+id/radioMultiple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Multiple Tickets" />
+
+        <RadioButton
+            android:id="@+id/radioSingle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single Ticket" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvTicketCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ticket Count (1)"
+        android:layout_below="@id/radioGroupTicketType"
+        android:layout_marginTop="8dp"
+        android:visibility="gone" />
+
+    <SeekBar
+        android:id="@+id/seekBarTickets"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tvTicketCount"
+        android:layout_toEndOf="@id/tvTicketCount"
+        android:layout_marginStart="16dp"
+        android:max="3"
+        android:progress="0"
+        android:visibility="gone" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTicketCount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioPaypal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paypal"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioVisa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visa" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radioGroupPayment"
+        android:layout_marginTop="16dp"
+        android:hint="Enter your name" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/custombuttonred"
+        android:text="Clear" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonFinish"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonClear"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/custombuttonred"
+        android:text="Finish" />
+
+
+
+
+</RelativeLayout>

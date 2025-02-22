@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">CinemaApp</string>
+    <string name="cinema_label">CINEMA</string>
+    <string name="movie_label">Movie</string>
+    <string name="multiple_tickets">Multiple Tickets</string>
+    <string name="single_ticket">Single Ticket</string>
+    <string name="paypal">Paypal</string>
+    <string name="visa">Visa</string>
+    <string name="enter_name">Enter your name</string>
+    <string name="clear_button">Clear</string>
+    <string name="finish_button">Finish</string>
+    <string name="name_empty">Your Name cannot be empty!</string>
+    <string name="ticket_details_title">Ticket Details</string>
+    <string name="movie_prompt">Movie :</string>
+    <string name="payment_prompt">Payment :</string>
+    <string name="ticket_count_prompt">Ticket Count :</string>
+    <string name="your_name_prompt">Your Name :</string>
+    <string name="close_button">CLOSE</string>
+
+    <string-array name="movies_array">
+        <item>Matrix</item>
+        <item>Inception</item>
+        <item>Witcher</item>
+        <item>IceAge</item>
+    </string-array>
+</resources>
