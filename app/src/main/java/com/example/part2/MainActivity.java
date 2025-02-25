@@ -12,11 +12,12 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner spinnerMovies;
     private ImageView imageViewMovie;
-    private RadioGroup radioGroupTicketType, radioGroupPayment;
+    private RadioGroup radioGroupTicketType;
     private RadioButton radioMultiple, radioSingle;
     private LinearLayout layoutTicketCount;
     private TextView tvTicketCount;
     private SeekBar seekBarTickets;
+    private RadioGroup radioGroupPayment;
     private EditText etName;
     private Button buttonFinish, buttonClear;
 
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 imageViewMovie.setImageResource(movieImages[position]);
             }
             @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         radioGroupTicketType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.radioMultiple) {
                     layoutTicketCount.setVisibility(View.VISIBLE);
-                } else {
+                } else if (checkedId == R.id.radioSingle) {
                     layoutTicketCount.setVisibility(View.GONE);
                 }
             }
@@ -83,17 +84,18 @@ public class MainActivity extends AppCompatActivity {
                 int count = progress + 1;
                 tvTicketCount.setText("Ticket Count (" + count + ")");
             }
-            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         buttonFinish.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                // İsim boşsa Toast
                 String name = etName.getText().toString().trim();
                 if (name.isEmpty()) {
                     Toast.makeText(MainActivity.this,
-                            getString(R.string.name_empty),
+                            getString(R.string.empty_name),
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -104,31 +106,33 @@ public class MainActivity extends AppCompatActivity {
                 RadioButton radioPaypal = findViewById(R.id.radioPaypal);
                 String paymentMethod = radioPaypal.isChecked() ? "Paypal" : "Visa";
 
-                int ticketCount = 1;
+                int ticketCount = 1; // Single varsayılan
                 if (radioMultiple.isChecked()) {
                     ticketCount = seekBarTickets.getProgress() + 1;
                 }
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setIcon(R.drawable.sinema); // res/drawable/cinema.png
-                builder.setTitle(getString(R.string.ticket_details_title));
+                final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).create();
+                View dialogView = getLayoutInflater().inflate(R.layout.dialog_ticket_details, null);
+                dialog.setView(dialogView);
 
-                String msg = "Movie : " + selectedMovie
+                TextView tvTicketInfo = dialogView.findViewById(R.id.tvTicketInfo);
+                Button btnClose = dialogView.findViewById(R.id.btnClose);
+
+                String info = "Movie : " + selectedMovie
                         + "\nPayment : " + paymentMethod
                         + "\nTicket Count : " + ticketCount
                         + "\nYour Name: " + name;
 
-                builder.setMessage(msg);
+                tvTicketInfo.setText(info);
 
-                builder.setPositiveButton(getString(R.string.close_button),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
+                btnClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
 
-                builder.show();
+                dialog.show();
             }
         });
 
